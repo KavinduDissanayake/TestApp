@@ -1,0 +1,74 @@
+package com.example.app1;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+
+public class ExpertRegister extends AppCompatActivity {
+    EditText userID,userName,Password,Email,Degree;
+    ProgressBar progressBar;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_expert_register);
+        userID = findViewById(R.id.id_reg_exp);
+        userName = findViewById(R.id.name_reg_exp);
+        Email = findViewById(R.id.email_reg_exp);
+        Degree = findViewById(R.id.profee_reg_exp);
+        Password = findViewById(R.id.password_reg_exp);
+        progressBar = findViewById(R.id.progressRegExpert);
+
+    }
+
+    public void goToLogin(View view) { startActivity(new Intent(ExpertRegister.this, LoginScreen.class));}
+
+    public void RegisterAsExpert(View view) {
+        Register();
+    }
+
+    private void Register(){
+
+        String userid,password,username,degree,email;
+        userid = userID.getText().toString();
+        username = userName.getText().toString();
+        email = Email.getText().toString();
+        password = Password.getText().toString();
+        degree = Degree.getText().toString();
+
+
+        Log.d("data Login  user id ", userid);
+        Log.d("data Login  user name ", username);
+        Log.d("data Login  email" , email);
+        Log.d("data Login  degree" , degree);
+
+        Log.d("data Login  password" , password);
+        // ---------------------------------Validation   Part------------------------------------------
+        if (TextUtils.isEmpty(userid)) {
+            userID.setError("Email is Required !");
+            return;
+        }
+        if (TextUtils.isEmpty(username)) {
+            userName.setError("userName is Required !");
+            return;
+        }
+        if (TextUtils.isEmpty(email)) {
+            Email.setError("Email is Required !");
+            return;
+        }
+        if (TextUtils.isEmpty(degree)) {
+            Degree.setError("Degree is Required !");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Password.setError("Password is Required !");
+            return;
+        }
+        progressBar.setVisibility(View.VISIBLE);
+    }
+}
